@@ -22,12 +22,12 @@ class App extends Component {
     if (prevState.searchQuery !== this.state.searchQuery) {
       this.getPictures();
 
-      if (prevState.page !== this.state.page) {
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: "smooth",
-        });
-      }
+      // if (prevState.page !== this.state.page) {
+      //   window.scrollTo({
+      //     top: document.documentElement.scrollHeight,
+      //     behavior: "smooth",
+      //   });
+      // }
     }
   }
 
@@ -66,6 +66,11 @@ class App extends Component {
             page: prevState.page + 1,
           };
         });
+
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: "smooth",
+        });
       })
       .finally(() => this.setState({ loading: false }));
   };
@@ -98,9 +103,7 @@ class App extends Component {
 
         <ImageGallery pictures={pictures} onOpenModal={this.onOpenModal} />
 
-        {pictures.length > 0 && !loading && (
-          <Button onClick={this.getPictures} />
-        )}
+        {!!pictures.length && !loading && <Button onClick={this.getPictures} />}
 
         {showModal && (
           <Modal onClick={this.onOpenModal} onClose={this.onToggleModal}>

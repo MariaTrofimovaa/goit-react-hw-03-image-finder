@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styles from "./Modal.module.css";
 
 class Modal extends Component {
-  state = {};
   componentDidMount() {
     window.addEventListener("keydown", this.handleEscape);
     const body = document.querySelector("body");
